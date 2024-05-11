@@ -5,6 +5,8 @@ A SwiftUI view for displaying various ongoing task states represented by Fetchin
 ### Example Usage:
 
 ```swift
+import FetchingView
+
 @MainActor
 class UsersViewModel: ObservableObject {
     @Published var userFetchingState: FetchingState<[User]> = .idle
