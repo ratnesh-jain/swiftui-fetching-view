@@ -8,6 +8,7 @@
 import Foundation
 import FetchingView
 
+@MainActor
 class UsersViewModel: ObservableObject {
     @Published var userFetchingState: FetchingState<[User]> = .idle
     private let service = Service()
