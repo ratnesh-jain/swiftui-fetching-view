@@ -42,3 +42,8 @@ struct UsersView: View {
     }
 }
 ```
+
+
+
+https://github.com/ratnesh-jain/swiftui-fetching-view/assets/117887125/6728b2a9-c46e-497b-a390-63ceabe54684
+
