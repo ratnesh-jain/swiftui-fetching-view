@@ -20,6 +20,7 @@ public struct LoadingView: View {
             ProgressView()
             Text(title ?? "Loading...")
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

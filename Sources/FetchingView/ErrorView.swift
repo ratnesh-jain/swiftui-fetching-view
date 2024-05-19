@@ -29,5 +29,6 @@ public struct ErrorView: View {
                 actionsViews
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
