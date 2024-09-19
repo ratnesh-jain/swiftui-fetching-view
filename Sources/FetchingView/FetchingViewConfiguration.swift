@@ -11,6 +11,7 @@ import SwiftUI
 struct FetchingViewConfiguration {
     var title: String?
     var actionsView: AnyView?
+    var fetchingView: AnyView?
 }
 
 extension FetchingViewConfiguration: EnvironmentKey {
@@ -43,5 +44,12 @@ extension View {
     /// - Returns: Same view
     public func fetchingTitle(_ title: String) -> some View {
         self.environment(\.fetchingViewConfiguration.title, title)
+    }
+    
+    /// Provides a view for `.fetching` state.
+    /// - Parameter content: A content view for `.fetching` state
+    /// - Returns: Same view
+    public func fetchingStateView<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        self.environment(\.fetchingViewConfiguration.fetchingView, AnyView(content()))
     }
 }

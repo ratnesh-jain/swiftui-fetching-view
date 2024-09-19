@@ -72,6 +72,8 @@ public struct FetchingView<T, L, Content, E>: View where T: Equatable, L: View, 
     var contentView: (T) -> Content
     var errorView: (String) -> E
     
+    @Environment(\.fetchingViewConfiguration.fetchingView) var fetchingStateView
+    
     public init(
         fetchingState: FetchingState<T>,
         @ViewBuilder contentView: @escaping (T) -> Content,
@@ -90,7 +92,11 @@ public struct FetchingView<T, L, Content, E>: View where T: Equatable, L: View, 
             Color.clear
             
         case .fetching:
-            loadingView()
+            if let fetchingStateView {
+                fetchingStateView
+            } else {
+                loadingView()
+            }
             
         case .fetched(let value):
             contentView(value)
@@ -168,6 +174,11 @@ extension FetchingView {
             print("Retry button tapped")
         }
         .buttonStyle(.bordered)
+    }
+    .fetchingStateView {
+        VStack {
+            Text("Fetching...")
+        }
     }
 }
 
