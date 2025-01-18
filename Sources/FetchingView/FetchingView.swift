@@ -73,6 +73,7 @@ public struct FetchingView<T, L, Content, E>: View where T: Equatable, L: View, 
     var errorView: (String) -> E
     
     @Environment(\.fetchingViewConfiguration.fetchingView) var fetchingStateView
+    @Environment(\.fetchingViewConfiguration.errorView) var errorStateView
     
     public init(
         fetchingState: FetchingState<T>,
@@ -102,7 +103,11 @@ public struct FetchingView<T, L, Content, E>: View where T: Equatable, L: View, 
             contentView(value)
             
         case .error(let message):
-            errorView(message)
+            if let errorStateView = errorStateView {
+                errorStateView(message)
+            } else {
+                errorView(message)
+            }
         }
     }
 }
@@ -164,7 +169,7 @@ extension FetchingView {
 
 // MARK: - Preview
 
-#Preview("Mark 1") {
+#Preview("Fetching Case") {
     FetchingView(fetchingState: .fetching) { (item: String) in
         Text("Item: \(item)")
     }
@@ -182,7 +187,7 @@ extension FetchingView {
     }
 }
 
-#Preview("Mark 2") {
+#Preview("Failure Case 1") {
     FetchingView(fetchingState: .error(message: "Something went wrong")) { (item: String) in
         Text("Item: \(item)")
     } onFetching: {
@@ -193,7 +198,23 @@ extension FetchingView {
     }
 }
 
-#Preview("Mark 3") {
+#Preview("Overriding error view") {
+    FetchingView(fetchingState: .error(message: "Something went wrong")) { (item: String) in
+        Text("Item: \(item)")
+    }
+    .errorStateView { message in
+        VStack {
+            Image(systemName: "house")
+                .font(.largeTitle)
+                .symbolVariant(.slash)
+            Text("Error occured")
+                .font(.title)
+            Text(message)
+        }
+    }
+}
+
+#Preview("Failure Case 2") {
     FetchingView(fetchingState: .error(message: "Internet failed")) { (item: [String]) in
         List {
             ForEach(item, id: \.self) {
