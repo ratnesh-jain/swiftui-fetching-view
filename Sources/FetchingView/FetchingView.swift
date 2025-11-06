@@ -31,10 +31,9 @@ import SwiftUI
 ///                 .font(.largeTitle)
 ///             Text("Fetching heart-rate information...")
 ///         }
-///     } onError: { message in
+///     } onError: {
 ///         VStack {
 ///             Image(systemName: "heart.slash")
-///             Text(message)
 ///         }
 ///     }
 ///
@@ -68,9 +67,9 @@ import SwiftUI
 ///
 public struct FetchingView<T, L, Content, E>: View where T: Equatable, L: View, Content: View, E: View {
     let fetchingState: FetchingState<T>
-    let loadingView: () -> L
+    let loadingView: L
     var contentView: (T) -> Content
-    var errorView: (String) -> E
+    var errorView: E
     
     @Environment(\.fetchingViewConfiguration.fetchingView) var fetchingStateView
     @Environment(\.fetchingViewConfiguration.errorView) var errorStateView
@@ -79,12 +78,12 @@ public struct FetchingView<T, L, Content, E>: View where T: Equatable, L: View, 
         fetchingState: FetchingState<T>,
         @ViewBuilder contentView: @escaping (T) -> Content,
         @ViewBuilder onFetching loadingView: @escaping () -> L,
-        @ViewBuilder onError errorView: @escaping (String) -> E
+        @ViewBuilder onError errorView: @escaping () -> E
     ) {
         self.fetchingState = fetchingState
-        self.loadingView = loadingView
+        self.loadingView = loadingView()
         self.contentView = contentView
-        self.errorView = errorView
+        self.errorView = errorView()
     }
     
     public var body: some View {
@@ -96,7 +95,7 @@ public struct FetchingView<T, L, Content, E>: View where T: Equatable, L: View, 
             if let fetchingStateView {
                 fetchingStateView
             } else {
-                loadingView()
+                loadingView
             }
             
         case .fetched(let value):
@@ -104,9 +103,11 @@ public struct FetchingView<T, L, Content, E>: View where T: Equatable, L: View, 
             
         case .error(let message):
             if let errorStateView = errorStateView {
-                errorStateView(message)
+                errorStateView
+                    .environment(\.errorMessage, message)
             } else {
-                errorView(message)
+                errorView
+                    .environment(\.errorMessage, message)
             }
         }
     }
@@ -126,7 +127,7 @@ extension FetchingView {
             fetchingState: fetchingState,
             contentView: contentView,
             onFetching: { LoadingView() },
-            onError: { ErrorView(message: $0) }
+            onError: { ErrorView() }
         )
     }
     
@@ -144,7 +145,7 @@ extension FetchingView {
             fetchingState: fetchingState,
             contentView: contentView,
             onFetching: loadingView,
-            onError: { ErrorView(message: $0) }
+            onError: { ErrorView() }
         )
     }
     
@@ -156,7 +157,7 @@ extension FetchingView {
     public init(
         fetchingState: FetchingState<T>,
         @ViewBuilder contentView: @escaping (T) -> Content,
-        @ViewBuilder onError errorView: @escaping (String) -> E
+        @ViewBuilder onError errorView: @escaping () -> E
     ) where L == LoadingView {
         self.init(
             fetchingState: fetchingState,
@@ -202,14 +203,13 @@ extension FetchingView {
     FetchingView(fetchingState: .error(message: "Something went wrong")) { (item: String) in
         Text("Item: \(item)")
     }
-    .errorStateView { message in
+    .errorStateView {
         VStack {
             Image(systemName: "house")
                 .font(.largeTitle)
                 .symbolVariant(.slash)
             Text("Error occured")
                 .font(.title)
-            Text(message)
         }
     }
 }
@@ -228,8 +228,7 @@ extension FetchingView {
                 .font(.largeTitle)
             Text("Fetching heart information...")
         }
-    } onError: { message in
-        Text(message)
+    } onError: {
         Button("Retry") {
             
         }

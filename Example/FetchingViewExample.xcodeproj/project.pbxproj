@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,10 +11,10 @@
 		036102642BEF448900E684C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036102632BEF448900E684C4 /* ContentView.swift */; };
 		036102662BEF448B00E684C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036102652BEF448B00E684C4 /* Assets.xcassets */; };
 		036102692BEF448B00E684C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036102682BEF448B00E684C4 /* Preview Assets.xcassets */; };
-		036102712BEF449C00E684C4 /* FetchingView in Frameworks */ = {isa = PBXBuildFile; productRef = 036102702BEF449C00E684C4 /* FetchingView */; };
 		036102732BEF44AA00E684C4 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036102722BEF44AA00E684C4 /* UsersViewModel.swift */; };
 		036102752BEF44D200E684C4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036102742BEF44D200E684C4 /* User.swift */; };
 		036102772BEF452300E684C4 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036102762BEF452300E684C4 /* Service.swift */; };
+		03EE54392EBD201900AFDC05 /* FetchingView in Frameworks */ = {isa = PBXBuildFile; productRef = 03EE54382EBD201900AFDC05 /* FetchingView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036102712BEF449C00E684C4 /* FetchingView in Frameworks */,
+				03EE54392EBD201900AFDC05 /* FetchingView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +44,7 @@
 			isa = PBXGroup;
 			children = (
 				036102602BEF448900E684C4 /* FetchingViewExample */,
+				03EE54372EBD201900AFDC05 /* Frameworks */,
 				0361025F2BEF448900E684C4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +79,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		03EE54372EBD201900AFDC05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,7 +103,7 @@
 			);
 			name = FetchingViewExample;
 			packageProductDependencies = (
-				036102702BEF449C00E684C4 /* FetchingView */,
+				03EE54382EBD201900AFDC05 /* FetchingView */,
 			);
 			productName = FetchingViewExample;
 			productReference = 0361025E2BEF448900E684C4 /* FetchingViewExample.app */;
@@ -109,7 +117,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					0361025D2BEF448900E684C4 = {
 						CreatedOnToolsVersion = 15.3;
@@ -126,7 +134,7 @@
 			);
 			mainGroup = 036102552BEF448900E684C4;
 			packageReferences = (
-				0361026F2BEF449C00E684C4 /* XCRemoteSwiftPackageReference "swiftui-fetching-view" */,
+				03EE54362EBD1FFA00AFDC05 /* XCLocalSwiftPackageReference "../../swiftui-fetching-view" */,
 			);
 			productRefGroup = 0361025F2BEF448900E684C4 /* Products */;
 			projectDirPath = "";
@@ -200,6 +208,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KFAF8589CA;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -223,6 +232,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -263,6 +273,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KFAF8589CA;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -279,6 +290,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -292,7 +304,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FetchingViewExample/Preview Content\"";
-				DEVELOPMENT_TEAM = 9G83WMJ43Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -321,7 +332,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FetchingViewExample/Preview Content\"";
-				DEVELOPMENT_TEAM = 9G83WMJ43Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -365,21 +375,17 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		0361026F2BEF449C00E684C4 /* XCRemoteSwiftPackageReference "swiftui-fetching-view" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ratnesh-jain/swiftui-fetching-view";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		03EE54362EBD1FFA00AFDC05 /* XCLocalSwiftPackageReference "../../swiftui-fetching-view" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../swiftui-fetching-view";
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		036102702BEF449C00E684C4 /* FetchingView */ = {
+		03EE54382EBD201900AFDC05 /* FetchingView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0361026F2BEF449C00E684C4 /* XCRemoteSwiftPackageReference "swiftui-fetching-view" */;
+			package = 03EE54362EBD1FFA00AFDC05 /* XCLocalSwiftPackageReference "../../swiftui-fetching-view" */;
 			productName = FetchingView;
 		};
 /* End XCSwiftPackageProductDependency section */

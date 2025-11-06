@@ -10,7 +10,7 @@ import SwiftUI
 /// A Fetching View configuration for custom fetching title and actions view in case of `error(message)`.
 struct FetchingViewConfiguration {
     var title: String?
-    var errorView: ((String) -> AnyView)?
+    var errorView: AnyView?
     var actionsView: AnyView?
     var fetchingView: AnyView?
 }
@@ -57,7 +57,7 @@ extension View {
     /// Provides a view for `.error` state.
     /// - Parameter content: A contentView for `.error` state
     /// - Returns: Same view
-    public func errorStateView<Content: View>(@ViewBuilder _ content: @escaping (String) -> Content) -> some View {
-        self.environment(\.fetchingViewConfiguration.errorView, { message in AnyView(content(message))} )
+    public func errorStateView<Content: View>(@ViewBuilder _ content: @escaping () -> Content) -> some View {
+        self.environment(\.fetchingViewConfiguration.errorView, AnyView(content()) )
     }
 }

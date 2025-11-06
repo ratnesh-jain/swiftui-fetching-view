@@ -35,7 +35,7 @@ import Foundation
 ///         }
 ///
 ///
-public enum FetchingState<T>: Equatable where T: Equatable {
+public enum FetchingState<T>: Equatable, Sendable where T: Equatable & Sendable {
     case idle
     case fetching
     case fetched(T)
