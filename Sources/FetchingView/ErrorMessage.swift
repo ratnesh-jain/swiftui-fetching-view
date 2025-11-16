@@ -9,5 +9,5 @@ import Foundation
 import SwiftUI
 
 extension EnvironmentValues {
-    @Entry var errorMessage: String?
+    @Entry public var errorMessage: String?
 }
